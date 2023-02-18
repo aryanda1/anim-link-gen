@@ -1,0 +1,6 @@
+card {
+  background: #fff;
+  border-radius: 12px;
+  /* Adding the padding makes the overflow of first li, remove that and see */
+  padding: 1rem;
+}
