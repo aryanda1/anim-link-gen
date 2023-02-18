@@ -1,5 +1,5 @@
 // import "./App.css";
-import Form from "./components/SerchAnime";
+import Form from "./components/SearchAnime";
 function App() {
   return (
     <div style={{ maxWidth: "40rem", margin: "0 auto", textAlign: "center" }}>
