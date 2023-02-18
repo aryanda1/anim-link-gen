@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import Paginate from "./Paginate";
 import Titles from "./Titles";
 import useHttp from "../hooks/usehttp";
 
@@ -8,7 +7,7 @@ export default function Form() {
   const [animeSearchRes, setAnimeSearchRes] = useState([]);
   const [searched, setSearched] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [titlePerPage, seTtitlePerPage] = useState(5);
+  const titlePerPage = 5;
   const { error, isLoading, sendRequest } = useHttp();
 
   const setDetails = (data) => {
