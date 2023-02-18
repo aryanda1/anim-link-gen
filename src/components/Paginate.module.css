@@ -1,0 +1,17 @@
+.ul {
+  text-align: center;
+}
+
+.ul > li {
+  display: inline-block;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  margin-right: 0.1rem;
+}
+
+.ul > li:hover,
+.ul > li.active {
+  background-color: #666;
+  color: white;
+}
