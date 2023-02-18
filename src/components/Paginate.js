@@ -3,7 +3,7 @@ import styles from "./Paginate.module.css";
 
 const Paginate = ({ titlePerPage, totalTitles, paginate }) => {
   const pageNumbers = [];
-  const [activeId, setActiveId] = useState();
+  const [activeId, setActiveId] = useState(1);
   for (let i = 1; i <= Math.ceil(totalTitles / titlePerPage); i++)
     pageNumbers.push(i);
 
