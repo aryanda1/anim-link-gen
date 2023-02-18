@@ -1,14 +1,16 @@
 import { useRef, useState } from "react";
 import Titles from "./Titles";
 import useHttp from "../hooks/usehttp";
+import ShowAnimeDetails from "./ShowAnime";
 
-export default function Form() {
+export default function Form(props) {
   const ref = useRef();
   const [animeSearchRes, setAnimeSearchRes] = useState([]);
   const [searched, setSearched] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const titlePerPage = 5;
   const { error, isLoading, sendRequest } = useHttp();
+  const [currentId, setCurrentId] = useState(null);
 
   const setDetails = (data) => {
     const results = data["results"].map((res, idx) => ({ ...res, index: idx }));
@@ -48,7 +50,11 @@ export default function Form() {
           totalTitles={animeSearchRes.length}
           paginate={setCurrentPage}
           error={error}
+          setCurrentAnime={setCurrentId}
         />
+      )}
+      {currentId !== null && (
+        <ShowAnimeDetails anime={animeSearchRes[currentId]} />
       )}
     </>
   );
