@@ -1,0 +1,15 @@
+.list {
+  margin: 0 auto;
+  max-width: 20rem;
+  text-align: center;
+}
+
+.li {
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.li:hover,
+.li.active {
+  color: rgb(133, 188, 237);
+}
