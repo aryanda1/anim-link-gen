@@ -6,7 +6,6 @@ const Titles = ({ animeDetails, loading }) => {
 
   const handleAnimeClick = (e) => {
     setActiveId(parseInt(e.target.getAttribute("data-index")));
-    console.log(e.target.getAttribute("data-index"));
   };
   //   console.log(typeof activeId);
 

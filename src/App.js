@@ -1,8 +1,8 @@
 // import "./App.css";
-import Form from "./components/Form";
+import Form from "./components/SerchAnime";
 function App() {
   return (
-    <div style={{ maxWidth: "40rem", margin: "0 auto" }}>
+    <div style={{ maxWidth: "40rem", margin: "0 auto", textAlign: "center" }}>
       <Form />
     </div>
   );
