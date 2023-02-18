@@ -7,16 +7,16 @@ const Paginate = ({ titlePerPage, totalTitles, paginate }) => {
   for (let i = 1; i <= Math.ceil(totalTitles / titlePerPage); i++)
     pageNumbers.push(i);
 
-  const clickHandler = () => {};
+  const clickHandler = (num) => {
+    setActiveId(num);
+    paginate(num);
+  };
   return (
     <ul className={styles.ul}>
       {pageNumbers.map((number) => (
         <li
           key={number}
-          onClick={() => {
-            setActiveId(number);
-            paginate(number);
-          }}
+          onClick={clickHandler.bind(null, number)}
           className={`${number === activeId ? styles.active : ""}`}
         >
           {number}
