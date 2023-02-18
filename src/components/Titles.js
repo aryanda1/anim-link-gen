@@ -8,6 +8,7 @@ const Titles = ({
   titlePerPage,
   totalTitles,
   paginate,
+  error,
 }) => {
   const [activeId, setActiveId] = useState();
 
@@ -42,7 +43,7 @@ const Titles = ({
       </>
     );
   if (loading) content = <p>Loading...</p>;
-
+  if (error) content = <p>{error}</p>;
   return content;
 };
 

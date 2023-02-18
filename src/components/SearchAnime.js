@@ -42,15 +42,14 @@ export default function Form() {
       </div>
       <button onClick={submitHandler}>Submit</button>
       {searched && (
-        <>
-          <Titles
-            animeDetails={currentDetails}
-            loading={isLoading}
-            titlePerPage={titlePerPage}
-            totalTitles={animeSearchRes.length}
-            paginate={setCurrentPage}
-          />
-        </>
+        <Titles
+          animeDetails={currentDetails}
+          loading={isLoading}
+          titlePerPage={titlePerPage}
+          totalTitles={animeSearchRes.length}
+          paginate={setCurrentPage}
+          error={error}
+        />
       )}
     </>
   );
