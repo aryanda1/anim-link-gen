@@ -9,11 +9,14 @@ const Titles = ({
   totalTitles,
   paginate,
   error,
+  setCurrentAnime,
 }) => {
   const [activeId, setActiveId] = useState();
 
   const handleAnimeClick = (e) => {
-    setActiveId(parseInt(e.target.getAttribute("data-index")));
+    const id = parseInt(e.target.getAttribute("data-index"));
+    setActiveId(id);
+    setCurrentAnime(id);
   };
   //   console.log(typeof activeId);
 
