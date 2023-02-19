@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Titles.module.css";
 import Paginate from "./Paginate";
 
@@ -18,8 +18,10 @@ const Titles = ({
     setActiveId(id);
     setCurrentAnime(id);
   };
-  //   console.log(typeof activeId);
-
+  // console.log(activeId);
+  useEffect(() => {
+    if (loading === true) setActiveId(-1);
+  }, [loading]);
   let content = <h2>No anime found! Try Again</h2>;
   if (animeDetails.length !== 0)
     content = (
