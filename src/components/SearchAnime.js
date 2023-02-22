@@ -5,57 +5,31 @@ import ShowAnimeDetails from "./ShowAnime";
 
 export default function Form(props) {
   const ref = useRef();
-  const [animeSearchRes, setAnimeSearchRes] = useState([]);
-  const [searched, setSearched] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const titlePerPage = 5;
   const { error, isLoading, sendRequest } = useHttp();
-  const [currentId, setCurrentId] = useState(null);
 
-  const setDetails = (data) => {
-    const results = data["results"].map((res, idx) => ({ ...res, index: idx }));
-    setAnimeSearchRes(results);
-  };
-
-  const submitHandler = async () => {
-    setSearched(true);
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    props.resetPrev();
     const an_name = ref.current.value;
     const requestConfig = {
-      url: "http://localhost:5000/search",
+      url: "https://flask-production-9c0d.up.railway.app/api/search",
       method: "POST",
       body: { an_name: an_name },
       headers: {
         "Content-Type": "application/json",
       },
     };
-    sendRequest(requestConfig, setDetails);
+    sendRequest(requestConfig, props.onSubmit);
+    // setSearched(true);
   };
 
-  const lastTitleIdx = currentPage * titlePerPage;
-  const firstTitleIdx = lastTitleIdx - titlePerPage;
-  const currentDetails = animeSearchRes.slice(firstTitleIdx, lastTitleIdx);
-  // console.log(animeSearchRes);
   return (
-    <>
+    <form>
       <div>
         <label htmlFor="name">Enter Anime Name</label>
         <input type="text" ref={ref} id="name" />
       </div>
       <button onClick={submitHandler}>Submit</button>
-      {searched && (
-        <Titles
-          animeDetails={currentDetails}
-          loading={isLoading}
-          titlePerPage={titlePerPage}
-          totalTitles={animeSearchRes.length}
-          paginate={setCurrentPage}
-          error={error}
-          setCurrentAnime={setCurrentId}
-        />
-      )}
-      {currentId !== null && (
-        <ShowAnimeDetails anime={animeSearchRes[currentId]} />
-      )}
-    </>
+    </form>
   );
 }
