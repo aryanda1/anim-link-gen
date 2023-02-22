@@ -1,33 +1,42 @@
 import { useCallback, useEffect, useState } from "react";
 import useHttp from "../hooks/usehttp";
 import Card from "../UI/Card";
+import Links from "./Links";
+
 const ShowAnimeDetails = (props) => {
+
   const name = props.anime.gogoTitle;
-  console.log(name);
-  const { error, isLoading, sendRequest } = useHttp();
-  const [eps, setEpisodes] = useState(0);
+  const uniqueId = props.unique;
+  // console.log(name);
+  const {
+    error: err,
+    isLoading: load,
+    sendRequest: getTotalEpisodes,
+  } = useHttp();
+  const [eps, setEpisodes] = useState(null);
   const fetchEpisodes = useCallback(() => {
     const requestConfig = {
-      url: "http://localhost:5000/episodesCount",
+      url: "https://flask-production-9c0d.up.railway.app/api/episodesCount",
       method: "POST",
-      body: { name: name },
+      body: { name: name, id: uniqueId },
       headers: {
         "Content-Type": "application/json",
       },
     };
-    sendRequest(requestConfig, (data) => {
+    getTotalEpisodes(requestConfig, (data) => {
       setEpisodes(parseInt(data["epsNo"]));
     });
-  }, [sendRequest, name]);
+  }, [getTotalEpisodes, name, uniqueId]);
   useEffect(() => {
     fetchEpisodes();
   }, [fetchEpisodes]);
 
-  if (eps === 0) return null;
+
   let content;
   if (eps !== 0)
     content = (
       <>
+      <h4>Anime Details</h4>
         <p>Title : {props.anime.name}</p>
         <p>Episdoes : {eps}</p>
         <p>
@@ -40,10 +49,12 @@ const ShowAnimeDetails = (props) => {
             https://gogoanime.pe/category/{name}
           </a>
         </p>
+        <Links uniqueId={uniqueId} />
       </>
     );
-  if (isLoading) content = <p>Loading...</p>;
-  if (error) content = <p>{error}</p>;
+  if (load) content = <p>Loading...</p>;
+  if (err) content = <p>{err}</p>;
+  if (eps === 0) return null;
   return <Card>{content}</Card>;
 };
 
