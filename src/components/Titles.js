@@ -1,16 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./Titles.module.css";
-import Paginate from "./Paginate";
 
-const Titles = ({
-  animeDetails,
-  loading,
-  titlePerPage,
-  totalTitles,
-  paginate,
-  error,
-  setCurrentAnime,
-}) => {
+const Titles = ({ animeDetails, setCurrentAnime }) => {
   const [activeId, setActiveId] = useState();
 
   const handleAnimeClick = (e) => {
@@ -18,10 +9,7 @@ const Titles = ({
     setActiveId(id);
     setCurrentAnime(id);
   };
-  // console.log(activeId);
-  useEffect(() => {
-    if (loading === true) setActiveId(-1);
-  }, [loading]);
+
   let content = <h2>No anime found! Try Again</h2>;
   if (animeDetails.length !== 0)
     content = (
@@ -40,15 +28,10 @@ const Titles = ({
             </li>
           ))}
         </ul>
-        <Paginate
-          titlePerPage={titlePerPage}
-          totalTitles={totalTitles}
-          paginate={paginate}
-        />
       </>
     );
-  if (loading) content = <p>Loading...</p>;
-  if (error) content = <p>{error}</p>;
+  // if (loading) content = <p>Loading...</p>;
+  // if (error) content = <p>{error}</p>;
   return content;
 };
 
