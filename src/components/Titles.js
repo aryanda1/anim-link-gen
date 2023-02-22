@@ -14,6 +14,7 @@ const Titles = ({ animeDetails, setCurrentAnime }) => {
   if (animeDetails.length !== 0)
     content = (
       <>
+      <h3>Anime Search Results</h3>
         <ul className={styles.list}>
           {animeDetails.map((detail) => (
             <li
