@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
 const useHttp = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(null);//check title.js why it's default was changed to null
   const [error, setError] = useState(null);
 
   const sendRequest = useCallback(async (requestConfig, applyData) => {
