@@ -3,12 +3,13 @@ import { useState } from "react";
 import Form from "./components/SearchAnime";
 import ShowAnimeDetails from "./components/ShowAnime";
 import ShowSearch from "./components/ShowSearch";
+import useHttp from "./hooks/usehttp";
 function App() {
+  const { error, isLoading, sendRequest } = useHttp();
   const [animeSearchRes, setAnimeSearchRes] = useState([]);
   const [uniqueId, setUniqueId] = useState(null);
   const [currentId, setCurrentId] = useState(null);
   const setSearchResultHandler = (data) => {
-    setAnimeSearchRes([]);
     const results = data["results"].map((res, idx) => ({ ...res, index: idx }));
     setUniqueId(data["uniqueId"]);
     setAnimeSearchRes(results);
@@ -17,16 +18,23 @@ function App() {
   const reset = () => {
     setAnimeSearchRes([]);
     setCurrentId(null);
-  }
+    setUniqueId(null);
+  };
   return (
-    <div style={{ maxWidth: "40rem", margin: "0 auto", textAlign: "center" }}>
+    <div className="app">
       <Form
         onSubmit={setSearchResultHandler}
         resetPrev={reset}
+        searchAnime={sendRequest}
+        loading={isLoading}
       />
-      {animeSearchRes.length !== 0 && (
-        <ShowSearch animes={animeSearchRes} setActiveAnime={setCurrentId} />
-      )}
+      <ShowSearch
+        animes={animeSearchRes}
+        setActiveAnime={setCurrentId}
+        error={error}
+        loading={isLoading}
+        activeAnime={currentId}
+      />
       {currentId !== null && (
         <ShowAnimeDetails anime={animeSearchRes[currentId]} unique={uniqueId} />
       )}

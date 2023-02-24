@@ -91,13 +91,16 @@ ul {
 
 .link-wrapper {
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .sub-header {
   font-weight: 550;
 }
 
+.center {
+  text-align: center;
+}
 .error-text {
   color: #b40e0e;
 }
