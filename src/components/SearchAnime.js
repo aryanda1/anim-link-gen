@@ -1,9 +1,8 @@
 import { useRef } from "react";
 import Card from "../UI/Card";
 
-export default function Form(props) {
+export default function Form({ resetPrev, onSubmit, searchAnime, loading }) {
   const ref = useRef();
-  const { resetPrev, onSubmit,searchAnime  } = props;
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -22,13 +21,17 @@ export default function Form(props) {
   };
 
   return (
-    <Card header='Search Any Anime'>
+    <Card header="Search Any Anime">
       <form>
-        <div>
+        <div className="form-control">
           <label htmlFor="name">Enter Anime Name</label>
           <input type="text" ref={ref} id="name" />
         </div>
-        <button onClick={submitHandler}>Submit</button>
+        <div className="form-actions">
+          <button className="link" onClick={submitHandler} disabled={loading}>
+            {loading ? "Searching" : "Submit"}
+          </button>
+        </div>
       </form>
     </Card>
   );
