@@ -4,7 +4,6 @@ import Card from "../UI/Card";
 import Links from "./Links";
 
 const ShowAnimeDetails = (props) => {
-
   const name = props.anime.gogoTitle;
   const uniqueId = props.unique;
   // console.log(name);
@@ -31,15 +30,18 @@ const ShowAnimeDetails = (props) => {
     fetchEpisodes();
   }, [fetchEpisodes]);
 
-
   let content;
   if (eps !== 0)
     content = (
       <>
-        <p>Title : {props.anime.name}</p>
-        <p>Episdoes : {eps}</p>
         <p>
-          Link :{" "}
+          <span className="sub-header">Title</span> : {props.anime.name}
+        </p>
+        <p>
+          <span className="sub-header">Episdoes</span> : {eps}
+        </p>
+        <p>
+          <span className="sub-header">Link</span> :{" "}
           <a
             href={`https://gogoanime.pe/category/${name}`}
             target="_blank"
@@ -52,9 +54,17 @@ const ShowAnimeDetails = (props) => {
       </>
     );
   if (load) content = <p>Loading...</p>;
-  if (err) content = <p>{err}</p>;
+  if (err)
+    content = (
+      <div className="center">
+        <p className="error-text">{err}</p>
+        <button onClick={fetchEpisodes} className="link">
+          Try Again!
+        </button>
+      </div>
+    );
   if (eps === 0) return null;
-  return <Card header='Anime Details'>{content}</Card>;
+  return <Card header="Anime Details">{content}</Card>;
 };
 
 export default ShowAnimeDetails;
