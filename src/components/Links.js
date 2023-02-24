@@ -34,7 +34,7 @@ const Links = ({ uniqueId }) => {
           </button>
         </div>
       </form>
-      {err2 && <p className="error-text">{err2}</p>}
+      {err2 && <p className="error-text center">{err2}</p>}
       {epsLink !== null && (
         <div className="link-wrapper">
           <a className="link" href={epsLink} target="_blank" rel="noreferrer">
