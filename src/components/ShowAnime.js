@@ -36,7 +36,6 @@ const ShowAnimeDetails = (props) => {
   if (eps !== 0)
     content = (
       <>
-      <h4>Anime Details</h4>
         <p>Title : {props.anime.name}</p>
         <p>Episdoes : {eps}</p>
         <p>
@@ -55,7 +54,7 @@ const ShowAnimeDetails = (props) => {
   if (load) content = <p>Loading...</p>;
   if (err) content = <p>{err}</p>;
   if (eps === 0) return null;
-  return <Card>{content}</Card>;
+  return <Card header='Anime Details'>{content}</Card>;
 };
 
 export default ShowAnimeDetails;
