@@ -1,16 +1,17 @@
 .list {
   margin: 0 auto;
-  max-width: 20rem;
-  text-align: center;
 }
 
 .li {
   margin-bottom: 0.4rem;
   border-bottom: 1px solid #ccc;
   cursor: pointer;
+  padding-bottom: 0.2rem;
+  font-weight: 500;
+  color: #ccc;
 }
 
 .li:hover,
 .li.active {
-  color: rgb(133, 188, 237);
+  color: #3f3f3f;
 }
