@@ -24,7 +24,7 @@ const Titles = ({ animeDetails, setCurrentAnime,error,loading,activeAnime }) => 
                 detail.index === activeAnime ? styles.active : ""
               }`}
             >
-              {detail.name}
+              {`${detail.index}) ${detail.name}`}
             </li>
           ))}
         </ul>
