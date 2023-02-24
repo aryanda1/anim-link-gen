@@ -1,6 +1,5 @@
 import useHttp from "../hooks/usehttp";
 import { useRef, useState } from "react";
-import Card from "../UI/Card";
 const Links = ({ uniqueId }) => {
   const epRef = useRef();
   const [epsLink, setEpsLink] = useState(null);
@@ -23,7 +22,7 @@ const Links = ({ uniqueId }) => {
     });
   };
   return (
-    <Card>
+    <>
       <form onSubmit={submitHandler}>
         <label>Enter Episode number</label>
         <input type="number" ref={epRef} />
@@ -34,7 +33,7 @@ const Links = ({ uniqueId }) => {
           Open
         </a>
       )}
-    </Card>
+    </>
   );
 };
 
