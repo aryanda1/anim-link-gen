@@ -1,6 +1,12 @@
-card {
+.card {
   background: #fff;
   border-radius: 12px;
   /* Adding the padding makes the overflow of first li, remove that and see */
   padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card h3{
+  border-bottom: 1px solid #3f3f3f;
+  padding-bottom: 0.5rem;
 }
