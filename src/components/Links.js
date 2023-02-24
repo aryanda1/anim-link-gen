@@ -24,14 +24,23 @@ const Links = ({ uniqueId }) => {
   return (
     <>
       <form onSubmit={submitHandler}>
-        <label>Enter Episode number</label>
-        <input type="number" ref={epRef} />
-        <button>Get</button>
+        <div className="form-control">
+          <label>Enter Episode number</label>
+          <input type="number" ref={epRef} />
+        </div>
+        <div className="form-actions">
+          <button className="link" disabled={load2}>
+            {load2 ? "Wait" : "Get"}
+          </button>
+        </div>
       </form>
+      {err2 && <p className="error-text">{err2}</p>}
       {epsLink !== null && (
-        <a href={epsLink} target="_blank" rel="noreferrer">
-          Open
-        </a>
+        <div className="link-wrapper">
+          <a className="link" href={epsLink} target="_blank" rel="noreferrer">
+            Open
+          </a>
+        </div>
       )}
     </>
   );
