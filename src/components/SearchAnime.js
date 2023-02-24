@@ -1,15 +1,13 @@
-import { useRef, useState } from "react";
-import Titles from "./Titles";
-import useHttp from "../hooks/usehttp";
-import ShowAnimeDetails from "./ShowAnime";
+import { useRef } from "react";
+import Card from "../UI/Card";
 
 export default function Form(props) {
   const ref = useRef();
-  const { error, isLoading, sendRequest } = useHttp();
+  const { resetPrev, onSubmit,searchAnime  } = props;
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    props.resetPrev();
+    resetPrev();
     const an_name = ref.current.value;
     const requestConfig = {
       url: "https://flask-production-9c0d.up.railway.app/api/search",
@@ -19,17 +17,19 @@ export default function Form(props) {
         "Content-Type": "application/json",
       },
     };
-    sendRequest(requestConfig, props.onSubmit);
+    searchAnime(requestConfig, onSubmit);
     // setSearched(true);
   };
 
   return (
-    <form>
-      <div>
-        <label htmlFor="name">Enter Anime Name</label>
-        <input type="text" ref={ref} id="name" />
-      </div>
-      <button onClick={submitHandler}>Submit</button>
-    </form>
+    <Card header='Search Any Anime'>
+      <form>
+        <div>
+          <label htmlFor="name">Enter Anime Name</label>
+          <input type="text" ref={ref} id="name" />
+        </div>
+        <button onClick={submitHandler}>Submit</button>
+      </form>
+    </Card>
   );
 }
