@@ -9,7 +9,7 @@ const Links = ({ uniqueId }) => {
     const episode = parseInt(epRef.current.value);
     setEpsLink(null);
     const requestConfig = {
-      url: "https://flask-production-9c0d.up.railway.app/api/getEps",
+      url: "https://flask-link-gen.onrender.com/api/getEps",
       method: "POST",
       body: { ep: episode, id: uniqueId },
       headers: {
