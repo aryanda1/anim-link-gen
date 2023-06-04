@@ -15,7 +15,7 @@ const ShowAnimeDetails = (props) => {
   const [eps, setEpisodes] = useState(null);
   const fetchEpisodes = useCallback(() => {
     const requestConfig = {
-      url: `${process.env.api_base}/api/episodesCount`,
+      url: `${process.env.REACT_APP_API}/api/episodesCount`,
       method: "POST",
       body: { name: name, id: uniqueId },
       headers: {

@@ -9,7 +9,7 @@ const Links = ({ uniqueId }) => {
     const episode = parseInt(epRef.current.value);
     setEpsLink(null);
     const requestConfig = {
-      url: `${process.env.api_base}/api/getEps`,
+      url: `${process.env.REACT_APP_API}/api/getEps`,
       method: "POST",
       body: { ep: episode, id: uniqueId },
       headers: {

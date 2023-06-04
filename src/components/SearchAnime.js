@@ -9,7 +9,7 @@ export default function Form({ resetPrev, onSubmit, searchAnime, loading }) {
     resetPrev();
     const an_name = ref.current.value;
     const requestConfig = {
-      url: `${process.env.api_base}/api/search`,
+      url: `${process.env.REACT_APP_API}/api/search`,
       method: "POST",
       body: { an_name: an_name },
       headers: {
