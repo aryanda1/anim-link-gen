@@ -15,7 +15,7 @@ const ShowAnimeDetails = (props) => {
   const [eps, setEpisodes] = useState(null);
   const fetchEpisodes = useCallback(() => {
     const requestConfig = {
-      url: "https://flask-link-gen.onrender.com/api/episodesCount",
+      url: `${process.env.api_base}/api/episodesCount`,
       method: "POST",
       body: { name: name, id: uniqueId },
       headers: {

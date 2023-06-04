@@ -9,7 +9,7 @@ export default function Form({ resetPrev, onSubmit, searchAnime, loading }) {
     resetPrev();
     const an_name = ref.current.value;
     const requestConfig = {
-      url: "https://flask-link-gen.onrender.com/api/search",
+      url: `${process.env.api_base}/api/search`,
       method: "POST",
       body: { an_name: an_name },
       headers: {
